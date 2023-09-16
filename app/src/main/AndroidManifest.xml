@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- 인터넷 권한 선언 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".kakaoAplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,11 +16,46 @@
         android:theme="@style/Theme.Veganing"
         tools:targetApi="31">
         <activity
-            android:name=".MyPage"
+            android:name=".LikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AllergyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecommendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyPageActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- kakao 로그인 화면으로 이동하기 위한 kakao.sdk에 존재하는 AuthCodeHandler를 추가-->
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:host="oauth"
+                    android:scheme="kakao{d1389f930f4c488f8df3754502736280}"/>
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
